@@ -14,6 +14,7 @@
 		044802BF256EFEAF00CAED6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 044802BE256EFEAF00CAED6F /* Assets.xcassets */; };
 		044802C2256EFEAF00CAED6F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 044802C0256EFEAF00CAED6F /* LaunchScreen.storyboard */; };
 		044802CB256EFECA00CAED6F /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044802CA256EFECA00CAED6F /* ListViewController.swift */; };
+		044802D4256F196200CAED6F /* GroceriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044802D3256F196200CAED6F /* GroceriesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		044802C1256EFEAF00CAED6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		044802C3256EFEAF00CAED6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		044802CA256EFECA00CAED6F /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		044802D3256F196200CAED6F /* GroceriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceriesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				044802CA256EFECA00CAED6F /* ListViewController.swift */,
+				044802D3256F196200CAED6F /* GroceriesViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				044802BD256EFEAD00CAED6F /* shoppingList.xcdatamodeld in Sources */,
+				044802D4256F196200CAED6F /* GroceriesViewController.swift in Sources */,
 				044802B3256EFEAD00CAED6F /* AppDelegate.swift in Sources */,
 				044802CB256EFECA00CAED6F /* ListViewController.swift in Sources */,
 				044802B5256EFEAD00CAED6F /* SceneDelegate.swift in Sources */,
