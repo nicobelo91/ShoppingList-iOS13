@@ -35,7 +35,10 @@ class GroceriesViewController: UITableViewController {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "groceriesCell", for: indexPath)
         
-        cell.textLabel?.text = groceries[indexPath.row].name
+        let grocery = groceries[indexPath.row]
+        cell.textLabel?.text = grocery.name
+        
+        cell.accessoryType = grocery.bought ? .checkmark : .none
         
         return cell
     }
@@ -43,11 +46,32 @@ class GroceriesViewController: UITableViewController {
     // MARK: - Data Manipulation
     
     func saveGroceries() {
+        do {
+            try context.save()
+        } catch {
+            print("Error saving context \(error)")
+        }
         
+        self.tableView.reloadData()
     }
     
-    func loadGroceries() {
+    func loadGroceries(with request: NSFetchRequest<Groceries> = Groceries.fetchRequest(), predicate: NSPredicate? = nil) {
         
+        let categoryPredicate = NSPredicate(format: "parentEntity.name MATCHES %@", selectedCategory!.name!)
+        
+        if let additionalPredicate = predicate {
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, additionalPredicate])
+        } else {
+            request.predicate = categoryPredicate
+        }
+        
+        do {
+            groceries = try context.fetch(request)
+        } catch {
+            print("Error fetching data from context \(error)")
+        }
+        
+        self.tableView.reloadData()
     }
     
     // MARK: - Add New Groceries
@@ -64,6 +88,8 @@ class GroceriesViewController: UITableViewController {
             
             let newGroceries = Groceries(context: self.context)
             newGroceries.name = textField.text
+            newGroceries.bought = false
+            newGroceries.parentEntity = self.selectedCategory
             
             self.groceries.append(newGroceries)
             
@@ -81,4 +107,12 @@ class GroceriesViewController: UITableViewController {
     }
     
     // MARK: - Tableview Delegate Methods
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        groceries[indexPath.row].bought = !groceries[indexPath.row].bought
+        
+        saveGroceries()
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
